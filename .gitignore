@@ -1,3 +1,10 @@
+Makefile
+libhash.a
 hash_test
-Makefile.bak
-*.o
+CMakeCache.txt
+CMakeFiles/
+CMakeLists.txt
+CTestTestfile.cmake
+DartConfiguration.tcl
+Testing/
+Cmake_install.cmake
