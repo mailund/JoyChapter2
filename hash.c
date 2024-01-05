@@ -27,22 +27,22 @@ void delete_table(struct hash_table *table)
 }
 
 static inline 
-unsigned int hash_bin_index(struct hash_table *table, unsigned int hash_key)
+unsigned int hash_bin_index(struct hash_table *table, hash_key key)
 {
     // Using bit masking to get the bin index.
     unsigned int mask = table->size - 1;
-    unsigned int index = hash_key & mask; 
-    // Alternatively, we can use hash_key % table->size;
+    unsigned int index = key & mask; 
+    // Alternatively, we can use key % table->size;
     return index;
 }
 
 static inline 
-struct bin *hash_bin(struct hash_table *table, unsigned int hash_key)
+struct bin *hash_bin(struct hash_table *table, hash_key key)
 {
-    return table->bins + hash_bin_index(table, hash_key);
+    return table->bins + hash_bin_index(table, key);
 }
 
-void insert_key(struct hash_table *table, unsigned int key)
+void insert_key(struct hash_table *table, hash_key key)
 {
     struct bin *bin = hash_bin(table, key);
     if (bin->is_free) {
@@ -54,7 +54,7 @@ void insert_key(struct hash_table *table, unsigned int key)
     }
 }
 
-bool contains_key(struct hash_table *table, unsigned int key)
+bool contains_key(struct hash_table *table, hash_key key)
 {
     struct bin *bin = hash_bin(table, key);
     // The bin contains the key if it isn't empty and the key it contains is the
@@ -62,7 +62,7 @@ bool contains_key(struct hash_table *table, unsigned int key)
     return !bin->is_free && bin->key == key;
 }
 
-void delete_key(struct hash_table *table, unsigned int key)
+void delete_key(struct hash_table *table, hash_key key)
 {
     struct bin *bin = hash_bin(table, key);
     if (bin->key == key) {

@@ -5,22 +5,24 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+typedef unsigned int hash_key;
+
 struct bin {
 	int is_free : 1;
-	unsigned int key;
+	hash_key key;
 };
 
 struct hash_table {
 	struct bin *bins;
-    unsigned int size;
+    size_t size;
 };
 
 struct hash_table *empty_table(size_t size);
 void delete_table(struct hash_table *table);
 
-void insert_key   (struct hash_table *table, unsigned int key);
-bool contains_key (struct hash_table *table, unsigned int key);
-void delete_key   (struct hash_table *table, unsigned int key);
+void insert_key   (struct hash_table *table, hash_key key);
+bool contains_key (struct hash_table *table, hash_key key);
+void delete_key   (struct hash_table *table, hash_key key);
 
 
 
