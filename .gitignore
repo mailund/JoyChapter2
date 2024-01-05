@@ -1,6 +1,8 @@
 Makefile
 libhash.a
 hash_test
+libhash_flex.a
+hash_flex_test
 CMakeCache.txt
 CMakeFiles/
 CMakeLists.txt
@@ -8,3 +10,5 @@ CTestTestfile.cmake
 DartConfiguration.tcl
 Testing/
 Cmake_install.cmake
+checks.json
+build/

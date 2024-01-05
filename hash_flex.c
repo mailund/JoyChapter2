@@ -6,11 +6,8 @@
 struct hash_table *empty_table(size_t size)
 {
     // Allocate table and bins
-    struct hash_table *table = malloc(sizeof *table);
-    *table = (struct hash_table){
-        .bins = malloc(size * sizeof *table->bins),
-        .size = size
-    };
+    struct hash_table *table = malloc(sizeof *table + size * sizeof *table->bins);
+    table->size = size;
 
     // Set all bins to free
     for (struct bin *bin = table->bins; bin != table->bins + size; bin++) {
@@ -23,7 +20,6 @@ struct hash_table *empty_table(size_t size)
 void delete_table(struct hash_table *table)
 {
     free(table->bins);
-    free(table);
 }
 
 static inline 

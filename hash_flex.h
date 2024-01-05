@@ -11,8 +11,8 @@ struct bin {
 };
 
 struct hash_table {
-	struct bin *bins;
     unsigned int size;
+	struct bin bins[]; // flexible array member
 };
 
 struct hash_table *empty_table(size_t size);
