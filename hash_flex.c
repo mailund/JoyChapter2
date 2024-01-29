@@ -1,39 +1,40 @@
 
-#include "hash.h"
 #include <stdlib.h>
 #include <string.h>
+
+#include "hash.h"
 
 struct hash_table *empty_table(size_t size)
 {
     // Allocate table and bins
     struct hash_table *table = malloc(sizeof *table + size * sizeof *table->bins);
+    if (!table)
+        return table;
+
     table->size = size;
 
     // Set all bins to free
-    for (struct bin *bin = table->bins; bin != table->bins + size; bin++) {
+    for (struct bin *bin = table->bins; bin != table->bins + size; bin++)
+    {
         bin->is_free = true;
     }
 
     return table;
 }
 
-void delete_table(struct hash_table *table)
-{
-    free(table->bins);
-}
+void delete_table(struct hash_table *table) { free(table->bins); }
 
-static inline 
-unsigned int hash_bin_index(struct hash_table *table, hash_key key)
+static inline unsigned int hash_bin_index(struct hash_table *table,
+                                          hash_key key)
 {
     // Using bit masking to get the bin index.
     unsigned int mask = table->size - 1;
-    unsigned int index = key & mask; 
+    unsigned int index = key & mask;
     // Alternatively, we can use key % table->size;
     return index;
 }
 
-static inline 
-struct bin *hash_bin(struct hash_table *table, hash_key key)
+static inline struct bin *hash_bin(struct hash_table *table, hash_key key)
 {
     return table->bins + hash_bin_index(table, key);
 }
@@ -41,10 +42,13 @@ struct bin *hash_bin(struct hash_table *table, hash_key key)
 void insert_key(struct hash_table *table, hash_key key)
 {
     struct bin *bin = hash_bin(table, key);
-    if (bin->is_free) {
+    if (bin->is_free)
+    {
         bin->key = key;
         bin->is_free = false;
-    } else {
+    }
+    else
+    {
         // There is already a key here, so we have a
         // collision. We cannot deal with this yet.
     }
@@ -60,8 +64,7 @@ bool contains_key(struct hash_table *table, hash_key key)
 
 void delete_key(struct hash_table *table, hash_key key)
 {
+    // Set the bin to free if the key matches, otherwise not (it contains a different key)
     struct bin *bin = hash_bin(table, key);
-    if (bin->key == key) {
-        bin->is_free = true;
-    }
+    bin->is_free = (bin->key == key);
 }

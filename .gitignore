@@ -12,3 +12,5 @@ Testing/
 Cmake_install.cmake
 checks.json
 build/
+CMakeScripts/
+JoyChapter2.xcodeproj/
