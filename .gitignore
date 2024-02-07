@@ -1,8 +1,3 @@
-Makefile
-libhash.a
-hash_test
-libhash_flex.a
-hash_flex_test
 CMakeCache.txt
 CMakeFiles/
 CMakeLists.txt
@@ -12,5 +7,14 @@ Testing/
 Cmake_install.cmake
 checks.json
 build/
+makebuild/
+xcodebuild/
 CMakeScripts/
-JoyChapter2.xcodeproj/
+hash_test
+hash_flex_test
+is_free_hash_test
+libhash.a
+libhash_flex.a
+libis_free_hash.a
+libspecial_key_hash.a
+special_key_hash_test

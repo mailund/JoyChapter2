@@ -2,6 +2,7 @@
 #ifndef HASH_H
 #define HASH_H
 
+#include <limits.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -12,7 +13,7 @@ struct bin {
 
 struct hash_table {
   unsigned int size;
-  struct bin bins[];  // flexible array member
+  struct bin *bins;
 };
 
 struct hash_table *new_table(unsigned int size);

@@ -2,17 +2,15 @@
 #ifndef HASH_H
 #define HASH_H
 
+#include <limits.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
-struct bin {
-  int is_free : 1;
-  unsigned int key;
-};
+#define RESERVED_KEY ((unsigned int)0)
 
 struct hash_table {
   unsigned int size;
-  struct bin bins[];  // flexible array member
+  unsigned int *bins;
 };
 
 struct hash_table *new_table(unsigned int size);
