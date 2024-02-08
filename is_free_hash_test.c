@@ -5,7 +5,7 @@
 #include "is_free_hash.h"
 
 static unsigned int random_key() {
-  unsigned int key = (unsigned int)random();
+  unsigned int key = (unsigned int)rand();
   if (key == 0 || key == 1) return 2;
   return key;
 }

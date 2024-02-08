@@ -2,7 +2,6 @@
 #include "is_free_hash.h"
 
 #include <stdlib.h>
-#include <string.h>
 
 struct hash_table *new_table(unsigned int size) {
   // Allocate table and bins
