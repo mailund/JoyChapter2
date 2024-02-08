@@ -74,5 +74,8 @@ contains_key(struct hash_table *table, unsigned int key)
 void
 delete_key(struct hash_table *table, unsigned int key)
 {
-  *hash_bin(table, key) = RESERVED_KEY;
+  unsigned int *bin = hash_bin(table, key);
+  if (*bin == key) {
+    *bin = RESERVED_KEY;
+  }
 }
