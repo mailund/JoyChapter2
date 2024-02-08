@@ -2,9 +2,7 @@
 #ifndef HASH_H
 #define HASH_H
 
-#include <limits.h>
 #include <stdbool.h>
-#include <stdlib.h>
 
 #define RESERVED_KEY ((unsigned int)0)
 

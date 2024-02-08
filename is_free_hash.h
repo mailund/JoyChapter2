@@ -2,9 +2,7 @@
 #ifndef HASH_H
 #define HASH_H
 
-#include <limits.h>
 #include <stdbool.h>
-#include <stdlib.h>
 
 struct bin {
   int is_free : 1;
@@ -16,11 +14,16 @@ struct hash_table {
   struct bin *bins;
 };
 
-struct hash_table *new_table(unsigned int size);
-void delete_table(struct hash_table *table);
+struct hash_table *
+new_table(unsigned int size);
+void
+delete_table(struct hash_table *table);
 
-void insert_key(struct hash_table *table, unsigned int key);
-bool contains_key(struct hash_table *table, unsigned int key);
-void delete_key(struct hash_table *table, unsigned int key);
+void
+insert_key(struct hash_table *table, unsigned int key);
+bool
+contains_key(struct hash_table *table, unsigned int key);
+void
+delete_key(struct hash_table *table, unsigned int key);
 
 #endif
