@@ -10,7 +10,8 @@ struct hash_table *new_table(unsigned int size) {
   table->bins = malloc(size * sizeof *table->bins);
 
   // Set all bins to free
-  for (struct bin *bin = table->bins; bin != table->bins + size; bin++) {
+  struct bin *beg = table->bins, *end = beg + size;
+  for (struct bin *bin = beg; bin != end; bin++) {
     bin->is_free = true;
   }
 

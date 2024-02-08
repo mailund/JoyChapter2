@@ -12,7 +12,8 @@ struct hash_table *new_table(unsigned int size) {
   if (!table || !bins) goto error;
 
   *table = (struct hash_table){.size = size, .bins = bins};
-  for (unsigned int *bin = table->bins; bin != table->bins + size; bin++) {
+  unsigned int *beg = table->bins, *end = beg + size;
+  for (unsigned int *bin = beg; bin != end; bin++) {
     *bin = RESERVED_KEY;
   }
   return table;
